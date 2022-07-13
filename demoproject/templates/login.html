@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <style type="text/css">
+        *{
+			padding: 0;
+			margin: 0;
+			font-family: sans-serif;
+		}
+		body{
+			background-image: url('./black.jpg') no-repeat;
+			background-color: 'cyan';
+		}
+		.login{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			padding: 15px 10px;
+
+		}
+		.login input{
+			font-size: 16px;
+			padding: 15px 10px;
+			margin: 10px;
+			width: 100%;
+			border: 0;
+			border-radius: 5px;
+			outline: none;
+
+		}
+		h1
+		{
+            position: absolute;
+			left: 50%;
+			top: 20%;
+			transform: translate(-50%, -50%);
+			padding: 15px 10px;
+			}
+
+    </style>
+</head>
+<body bgcolor="#B53A6C">
+    <h1><center>LOGIN</center></h1>
+	<div class="login">
+		<form action="login" method="POST">
+        {% csrf_token %}
+
+		<P>USERNAME:</P>
+		<input type="text" name="username">
+		<P>PASSWORD:</P>
+		<input type="text" name="password">
+            <input type="submit">
+            {% for msg in messages %}
+            <h2>{{ msg }}</h2>
+            {% endfor %}
+</body>
+</html>
