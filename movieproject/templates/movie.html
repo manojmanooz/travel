@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+{% for i in value %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{i.img.url}}" height="300" width="300">
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'movieapp:detail' i.id %}">{{i.name}}</a><br>
+        </div>
+    </div>
+</div>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+
+
+{% endfor %}
+<center><a href="{% url 'movieapp:add_movie' %}" class="btn btn-primary">ADD MOVIES</a></center>
+{% endblock %}

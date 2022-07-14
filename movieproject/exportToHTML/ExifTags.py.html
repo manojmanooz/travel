@@ -1,0 +1,352 @@
+<html>
+<head>
+<title>ExifTags.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #699856;}
+.s1 { color: #d4d4d4;}
+.s2 { color: #6a9955;}
+.s3 { color: #b4cda8;}
+.s4 { color: #cd9069;}
+</style>
+</head>
+<body bgcolor="#1e1e1e">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ExifTags.py</font>
+</center></td></tr></table>
+<pre><span class="s0">#</span>
+<span class="s0"># The Python Imaging Library.</span>
+<span class="s0"># $Id$</span>
+<span class="s0">#</span>
+<span class="s0"># EXIF tags</span>
+<span class="s0">#</span>
+<span class="s0"># Copyright (c) 2003 by Secret Labs AB</span>
+<span class="s0">#</span>
+<span class="s0"># See the README file for information on usage and redistribution.</span>
+<span class="s0">#</span>
+
+<span class="s2">&quot;&quot;&quot; 
+This module provides constants and clear-text names for various 
+well-known EXIF tags. 
+&quot;&quot;&quot;</span>
+
+
+<span class="s1">TAGS = {</span>
+    <span class="s0"># possibly incomplete</span>
+    <span class="s3">0x0001</span><span class="s1">: </span><span class="s4">&quot;InteropIndex&quot;</span><span class="s1">,</span>
+    <span class="s3">0x000B</span><span class="s1">: </span><span class="s4">&quot;ProcessingSoftware&quot;</span><span class="s1">,</span>
+    <span class="s3">0x00FE</span><span class="s1">: </span><span class="s4">&quot;NewSubfileType&quot;</span><span class="s1">,</span>
+    <span class="s3">0x00FF</span><span class="s1">: </span><span class="s4">&quot;SubfileType&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0100</span><span class="s1">: </span><span class="s4">&quot;ImageWidth&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0101</span><span class="s1">: </span><span class="s4">&quot;ImageLength&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0102</span><span class="s1">: </span><span class="s4">&quot;BitsPerSample&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0103</span><span class="s1">: </span><span class="s4">&quot;Compression&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0106</span><span class="s1">: </span><span class="s4">&quot;PhotometricInterpretation&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0107</span><span class="s1">: </span><span class="s4">&quot;Thresholding&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0108</span><span class="s1">: </span><span class="s4">&quot;CellWidth&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0109</span><span class="s1">: </span><span class="s4">&quot;CellLength&quot;</span><span class="s1">,</span>
+    <span class="s3">0x010A</span><span class="s1">: </span><span class="s4">&quot;FillOrder&quot;</span><span class="s1">,</span>
+    <span class="s3">0x010D</span><span class="s1">: </span><span class="s4">&quot;DocumentName&quot;</span><span class="s1">,</span>
+    <span class="s3">0x010E</span><span class="s1">: </span><span class="s4">&quot;ImageDescription&quot;</span><span class="s1">,</span>
+    <span class="s3">0x010F</span><span class="s1">: </span><span class="s4">&quot;Make&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0110</span><span class="s1">: </span><span class="s4">&quot;Model&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0111</span><span class="s1">: </span><span class="s4">&quot;StripOffsets&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0112</span><span class="s1">: </span><span class="s4">&quot;Orientation&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0115</span><span class="s1">: </span><span class="s4">&quot;SamplesPerPixel&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0116</span><span class="s1">: </span><span class="s4">&quot;RowsPerStrip&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0117</span><span class="s1">: </span><span class="s4">&quot;StripByteCounts&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0118</span><span class="s1">: </span><span class="s4">&quot;MinSampleValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0119</span><span class="s1">: </span><span class="s4">&quot;MaxSampleValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x011A</span><span class="s1">: </span><span class="s4">&quot;XResolution&quot;</span><span class="s1">,</span>
+    <span class="s3">0x011B</span><span class="s1">: </span><span class="s4">&quot;YResolution&quot;</span><span class="s1">,</span>
+    <span class="s3">0x011C</span><span class="s1">: </span><span class="s4">&quot;PlanarConfiguration&quot;</span><span class="s1">,</span>
+    <span class="s3">0x011D</span><span class="s1">: </span><span class="s4">&quot;PageName&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0120</span><span class="s1">: </span><span class="s4">&quot;FreeOffsets&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0121</span><span class="s1">: </span><span class="s4">&quot;FreeByteCounts&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0122</span><span class="s1">: </span><span class="s4">&quot;GrayResponseUnit&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0123</span><span class="s1">: </span><span class="s4">&quot;GrayResponseCurve&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0124</span><span class="s1">: </span><span class="s4">&quot;T4Options&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0125</span><span class="s1">: </span><span class="s4">&quot;T6Options&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0128</span><span class="s1">: </span><span class="s4">&quot;ResolutionUnit&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0129</span><span class="s1">: </span><span class="s4">&quot;PageNumber&quot;</span><span class="s1">,</span>
+    <span class="s3">0x012D</span><span class="s1">: </span><span class="s4">&quot;TransferFunction&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0131</span><span class="s1">: </span><span class="s4">&quot;Software&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0132</span><span class="s1">: </span><span class="s4">&quot;DateTime&quot;</span><span class="s1">,</span>
+    <span class="s3">0x013B</span><span class="s1">: </span><span class="s4">&quot;Artist&quot;</span><span class="s1">,</span>
+    <span class="s3">0x013C</span><span class="s1">: </span><span class="s4">&quot;HostComputer&quot;</span><span class="s1">,</span>
+    <span class="s3">0x013D</span><span class="s1">: </span><span class="s4">&quot;Predictor&quot;</span><span class="s1">,</span>
+    <span class="s3">0x013E</span><span class="s1">: </span><span class="s4">&quot;WhitePoint&quot;</span><span class="s1">,</span>
+    <span class="s3">0x013F</span><span class="s1">: </span><span class="s4">&quot;PrimaryChromaticities&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0140</span><span class="s1">: </span><span class="s4">&quot;ColorMap&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0141</span><span class="s1">: </span><span class="s4">&quot;HalftoneHints&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0142</span><span class="s1">: </span><span class="s4">&quot;TileWidth&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0143</span><span class="s1">: </span><span class="s4">&quot;TileLength&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0144</span><span class="s1">: </span><span class="s4">&quot;TileOffsets&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0145</span><span class="s1">: </span><span class="s4">&quot;TileByteCounts&quot;</span><span class="s1">,</span>
+    <span class="s3">0x014A</span><span class="s1">: </span><span class="s4">&quot;SubIFDs&quot;</span><span class="s1">,</span>
+    <span class="s3">0x014C</span><span class="s1">: </span><span class="s4">&quot;InkSet&quot;</span><span class="s1">,</span>
+    <span class="s3">0x014D</span><span class="s1">: </span><span class="s4">&quot;InkNames&quot;</span><span class="s1">,</span>
+    <span class="s3">0x014E</span><span class="s1">: </span><span class="s4">&quot;NumberOfInks&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0150</span><span class="s1">: </span><span class="s4">&quot;DotRange&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0151</span><span class="s1">: </span><span class="s4">&quot;TargetPrinter&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0152</span><span class="s1">: </span><span class="s4">&quot;ExtraSamples&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0153</span><span class="s1">: </span><span class="s4">&quot;SampleFormat&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0154</span><span class="s1">: </span><span class="s4">&quot;SMinSampleValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0155</span><span class="s1">: </span><span class="s4">&quot;SMaxSampleValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0156</span><span class="s1">: </span><span class="s4">&quot;TransferRange&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0157</span><span class="s1">: </span><span class="s4">&quot;ClipPath&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0158</span><span class="s1">: </span><span class="s4">&quot;XClipPathUnits&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0159</span><span class="s1">: </span><span class="s4">&quot;YClipPathUnits&quot;</span><span class="s1">,</span>
+    <span class="s3">0x015A</span><span class="s1">: </span><span class="s4">&quot;Indexed&quot;</span><span class="s1">,</span>
+    <span class="s3">0x015B</span><span class="s1">: </span><span class="s4">&quot;JPEGTables&quot;</span><span class="s1">,</span>
+    <span class="s3">0x015F</span><span class="s1">: </span><span class="s4">&quot;OPIProxy&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0200</span><span class="s1">: </span><span class="s4">&quot;JPEGProc&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0201</span><span class="s1">: </span><span class="s4">&quot;JpegIFOffset&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0202</span><span class="s1">: </span><span class="s4">&quot;JpegIFByteCount&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0203</span><span class="s1">: </span><span class="s4">&quot;JpegRestartInterval&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0205</span><span class="s1">: </span><span class="s4">&quot;JpegLosslessPredictors&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0206</span><span class="s1">: </span><span class="s4">&quot;JpegPointTransforms&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0207</span><span class="s1">: </span><span class="s4">&quot;JpegQTables&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0208</span><span class="s1">: </span><span class="s4">&quot;JpegDCTables&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0209</span><span class="s1">: </span><span class="s4">&quot;JpegACTables&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0211</span><span class="s1">: </span><span class="s4">&quot;YCbCrCoefficients&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0212</span><span class="s1">: </span><span class="s4">&quot;YCbCrSubSampling&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0213</span><span class="s1">: </span><span class="s4">&quot;YCbCrPositioning&quot;</span><span class="s1">,</span>
+    <span class="s3">0x0214</span><span class="s1">: </span><span class="s4">&quot;ReferenceBlackWhite&quot;</span><span class="s1">,</span>
+    <span class="s3">0x02BC</span><span class="s1">: </span><span class="s4">&quot;XMLPacket&quot;</span><span class="s1">,</span>
+    <span class="s3">0x1000</span><span class="s1">: </span><span class="s4">&quot;RelatedImageFileFormat&quot;</span><span class="s1">,</span>
+    <span class="s3">0x1001</span><span class="s1">: </span><span class="s4">&quot;RelatedImageWidth&quot;</span><span class="s1">,</span>
+    <span class="s3">0x1002</span><span class="s1">: </span><span class="s4">&quot;RelatedImageLength&quot;</span><span class="s1">,</span>
+    <span class="s3">0x4746</span><span class="s1">: </span><span class="s4">&quot;Rating&quot;</span><span class="s1">,</span>
+    <span class="s3">0x4749</span><span class="s1">: </span><span class="s4">&quot;RatingPercent&quot;</span><span class="s1">,</span>
+    <span class="s3">0x800D</span><span class="s1">: </span><span class="s4">&quot;ImageID&quot;</span><span class="s1">,</span>
+    <span class="s3">0x828D</span><span class="s1">: </span><span class="s4">&quot;CFARepeatPatternDim&quot;</span><span class="s1">,</span>
+    <span class="s3">0x828E</span><span class="s1">: </span><span class="s4">&quot;CFAPattern&quot;</span><span class="s1">,</span>
+    <span class="s3">0x828F</span><span class="s1">: </span><span class="s4">&quot;BatteryLevel&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8298</span><span class="s1">: </span><span class="s4">&quot;Copyright&quot;</span><span class="s1">,</span>
+    <span class="s3">0x829A</span><span class="s1">: </span><span class="s4">&quot;ExposureTime&quot;</span><span class="s1">,</span>
+    <span class="s3">0x829D</span><span class="s1">: </span><span class="s4">&quot;FNumber&quot;</span><span class="s1">,</span>
+    <span class="s3">0x83BB</span><span class="s1">: </span><span class="s4">&quot;IPTCNAA&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8649</span><span class="s1">: </span><span class="s4">&quot;ImageResources&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8769</span><span class="s1">: </span><span class="s4">&quot;ExifOffset&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8773</span><span class="s1">: </span><span class="s4">&quot;InterColorProfile&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8822</span><span class="s1">: </span><span class="s4">&quot;ExposureProgram&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8824</span><span class="s1">: </span><span class="s4">&quot;SpectralSensitivity&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8825</span><span class="s1">: </span><span class="s4">&quot;GPSInfo&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8827</span><span class="s1">: </span><span class="s4">&quot;ISOSpeedRatings&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8828</span><span class="s1">: </span><span class="s4">&quot;OECF&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8829</span><span class="s1">: </span><span class="s4">&quot;Interlace&quot;</span><span class="s1">,</span>
+    <span class="s3">0x882A</span><span class="s1">: </span><span class="s4">&quot;TimeZoneOffset&quot;</span><span class="s1">,</span>
+    <span class="s3">0x882B</span><span class="s1">: </span><span class="s4">&quot;SelfTimerMode&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8830</span><span class="s1">: </span><span class="s4">&quot;SensitivityType&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8831</span><span class="s1">: </span><span class="s4">&quot;StandardOutputSensitivity&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8832</span><span class="s1">: </span><span class="s4">&quot;RecommendedExposureIndex&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8833</span><span class="s1">: </span><span class="s4">&quot;ISOSpeed&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8834</span><span class="s1">: </span><span class="s4">&quot;ISOSpeedLatitudeyyy&quot;</span><span class="s1">,</span>
+    <span class="s3">0x8835</span><span class="s1">: </span><span class="s4">&quot;ISOSpeedLatitudezzz&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9000</span><span class="s1">: </span><span class="s4">&quot;ExifVersion&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9003</span><span class="s1">: </span><span class="s4">&quot;DateTimeOriginal&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9004</span><span class="s1">: </span><span class="s4">&quot;DateTimeDigitized&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9010</span><span class="s1">: </span><span class="s4">&quot;OffsetTime&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9011</span><span class="s1">: </span><span class="s4">&quot;OffsetTimeOriginal&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9012</span><span class="s1">: </span><span class="s4">&quot;OffsetTimeDigitized&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9101</span><span class="s1">: </span><span class="s4">&quot;ComponentsConfiguration&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9102</span><span class="s1">: </span><span class="s4">&quot;CompressedBitsPerPixel&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9201</span><span class="s1">: </span><span class="s4">&quot;ShutterSpeedValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9202</span><span class="s1">: </span><span class="s4">&quot;ApertureValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9203</span><span class="s1">: </span><span class="s4">&quot;BrightnessValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9204</span><span class="s1">: </span><span class="s4">&quot;ExposureBiasValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9205</span><span class="s1">: </span><span class="s4">&quot;MaxApertureValue&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9206</span><span class="s1">: </span><span class="s4">&quot;SubjectDistance&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9207</span><span class="s1">: </span><span class="s4">&quot;MeteringMode&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9208</span><span class="s1">: </span><span class="s4">&quot;LightSource&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9209</span><span class="s1">: </span><span class="s4">&quot;Flash&quot;</span><span class="s1">,</span>
+    <span class="s3">0x920A</span><span class="s1">: </span><span class="s4">&quot;FocalLength&quot;</span><span class="s1">,</span>
+    <span class="s3">0x920B</span><span class="s1">: </span><span class="s4">&quot;FlashEnergy&quot;</span><span class="s1">,</span>
+    <span class="s3">0x920C</span><span class="s1">: </span><span class="s4">&quot;SpatialFrequencyResponse&quot;</span><span class="s1">,</span>
+    <span class="s3">0x920D</span><span class="s1">: </span><span class="s4">&quot;Noise&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9211</span><span class="s1">: </span><span class="s4">&quot;ImageNumber&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9212</span><span class="s1">: </span><span class="s4">&quot;SecurityClassification&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9213</span><span class="s1">: </span><span class="s4">&quot;ImageHistory&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9214</span><span class="s1">: </span><span class="s4">&quot;SubjectLocation&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9215</span><span class="s1">: </span><span class="s4">&quot;ExposureIndex&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9216</span><span class="s1">: </span><span class="s4">&quot;TIFF/EPStandardID&quot;</span><span class="s1">,</span>
+    <span class="s3">0x927C</span><span class="s1">: </span><span class="s4">&quot;MakerNote&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9286</span><span class="s1">: </span><span class="s4">&quot;UserComment&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9290</span><span class="s1">: </span><span class="s4">&quot;SubsecTime&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9291</span><span class="s1">: </span><span class="s4">&quot;SubsecTimeOriginal&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9292</span><span class="s1">: </span><span class="s4">&quot;SubsecTimeDigitized&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9400</span><span class="s1">: </span><span class="s4">&quot;AmbientTemperature&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9401</span><span class="s1">: </span><span class="s4">&quot;Humidity&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9402</span><span class="s1">: </span><span class="s4">&quot;Pressure&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9403</span><span class="s1">: </span><span class="s4">&quot;WaterDepth&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9404</span><span class="s1">: </span><span class="s4">&quot;Acceleration&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9405</span><span class="s1">: </span><span class="s4">&quot;CameraElevationAngle&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9C9B</span><span class="s1">: </span><span class="s4">&quot;XPTitle&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9C9C</span><span class="s1">: </span><span class="s4">&quot;XPComment&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9C9D</span><span class="s1">: </span><span class="s4">&quot;XPAuthor&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9C9E</span><span class="s1">: </span><span class="s4">&quot;XPKeywords&quot;</span><span class="s1">,</span>
+    <span class="s3">0x9C9F</span><span class="s1">: </span><span class="s4">&quot;XPSubject&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA000</span><span class="s1">: </span><span class="s4">&quot;FlashPixVersion&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA001</span><span class="s1">: </span><span class="s4">&quot;ColorSpace&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA002</span><span class="s1">: </span><span class="s4">&quot;ExifImageWidth&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA003</span><span class="s1">: </span><span class="s4">&quot;ExifImageHeight&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA004</span><span class="s1">: </span><span class="s4">&quot;RelatedSoundFile&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA005</span><span class="s1">: </span><span class="s4">&quot;ExifInteroperabilityOffset&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA20B</span><span class="s1">: </span><span class="s4">&quot;FlashEnergy&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA20C</span><span class="s1">: </span><span class="s4">&quot;SpatialFrequencyResponse&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA20E</span><span class="s1">: </span><span class="s4">&quot;FocalPlaneXResolution&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA20F</span><span class="s1">: </span><span class="s4">&quot;FocalPlaneYResolution&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA210</span><span class="s1">: </span><span class="s4">&quot;FocalPlaneResolutionUnit&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA214</span><span class="s1">: </span><span class="s4">&quot;SubjectLocation&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA215</span><span class="s1">: </span><span class="s4">&quot;ExposureIndex&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA217</span><span class="s1">: </span><span class="s4">&quot;SensingMethod&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA300</span><span class="s1">: </span><span class="s4">&quot;FileSource&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA301</span><span class="s1">: </span><span class="s4">&quot;SceneType&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA302</span><span class="s1">: </span><span class="s4">&quot;CFAPattern&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA401</span><span class="s1">: </span><span class="s4">&quot;CustomRendered&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA402</span><span class="s1">: </span><span class="s4">&quot;ExposureMode&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA403</span><span class="s1">: </span><span class="s4">&quot;WhiteBalance&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA404</span><span class="s1">: </span><span class="s4">&quot;DigitalZoomRatio&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA405</span><span class="s1">: </span><span class="s4">&quot;FocalLengthIn35mmFilm&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA406</span><span class="s1">: </span><span class="s4">&quot;SceneCaptureType&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA407</span><span class="s1">: </span><span class="s4">&quot;GainControl&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA408</span><span class="s1">: </span><span class="s4">&quot;Contrast&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA409</span><span class="s1">: </span><span class="s4">&quot;Saturation&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA40A</span><span class="s1">: </span><span class="s4">&quot;Sharpness&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA40B</span><span class="s1">: </span><span class="s4">&quot;DeviceSettingDescription&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA40C</span><span class="s1">: </span><span class="s4">&quot;SubjectDistanceRange&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA420</span><span class="s1">: </span><span class="s4">&quot;ImageUniqueID&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA430</span><span class="s1">: </span><span class="s4">&quot;CameraOwnerName&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA431</span><span class="s1">: </span><span class="s4">&quot;BodySerialNumber&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA432</span><span class="s1">: </span><span class="s4">&quot;LensSpecification&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA433</span><span class="s1">: </span><span class="s4">&quot;LensMake&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA434</span><span class="s1">: </span><span class="s4">&quot;LensModel&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA435</span><span class="s1">: </span><span class="s4">&quot;LensSerialNumber&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA460</span><span class="s1">: </span><span class="s4">&quot;CompositeImage&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA461</span><span class="s1">: </span><span class="s4">&quot;CompositeImageCount&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA462</span><span class="s1">: </span><span class="s4">&quot;CompositeImageExposureTimes&quot;</span><span class="s1">,</span>
+    <span class="s3">0xA500</span><span class="s1">: </span><span class="s4">&quot;Gamma&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC4A5</span><span class="s1">: </span><span class="s4">&quot;PrintImageMatching&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC612</span><span class="s1">: </span><span class="s4">&quot;DNGVersion&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC613</span><span class="s1">: </span><span class="s4">&quot;DNGBackwardVersion&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC614</span><span class="s1">: </span><span class="s4">&quot;UniqueCameraModel&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC615</span><span class="s1">: </span><span class="s4">&quot;LocalizedCameraModel&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC616</span><span class="s1">: </span><span class="s4">&quot;CFAPlaneColor&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC617</span><span class="s1">: </span><span class="s4">&quot;CFALayout&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC618</span><span class="s1">: </span><span class="s4">&quot;LinearizationTable&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC619</span><span class="s1">: </span><span class="s4">&quot;BlackLevelRepeatDim&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC61A</span><span class="s1">: </span><span class="s4">&quot;BlackLevel&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC61B</span><span class="s1">: </span><span class="s4">&quot;BlackLevelDeltaH&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC61C</span><span class="s1">: </span><span class="s4">&quot;BlackLevelDeltaV&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC61D</span><span class="s1">: </span><span class="s4">&quot;WhiteLevel&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC61E</span><span class="s1">: </span><span class="s4">&quot;DefaultScale&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC61F</span><span class="s1">: </span><span class="s4">&quot;DefaultCropOrigin&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC620</span><span class="s1">: </span><span class="s4">&quot;DefaultCropSize&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC621</span><span class="s1">: </span><span class="s4">&quot;ColorMatrix1&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC622</span><span class="s1">: </span><span class="s4">&quot;ColorMatrix2&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC623</span><span class="s1">: </span><span class="s4">&quot;CameraCalibration1&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC624</span><span class="s1">: </span><span class="s4">&quot;CameraCalibration2&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC625</span><span class="s1">: </span><span class="s4">&quot;ReductionMatrix1&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC626</span><span class="s1">: </span><span class="s4">&quot;ReductionMatrix2&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC627</span><span class="s1">: </span><span class="s4">&quot;AnalogBalance&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC628</span><span class="s1">: </span><span class="s4">&quot;AsShotNeutral&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC629</span><span class="s1">: </span><span class="s4">&quot;AsShotWhiteXY&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC62A</span><span class="s1">: </span><span class="s4">&quot;BaselineExposure&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC62B</span><span class="s1">: </span><span class="s4">&quot;BaselineNoise&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC62C</span><span class="s1">: </span><span class="s4">&quot;BaselineSharpness&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC62D</span><span class="s1">: </span><span class="s4">&quot;BayerGreenSplit&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC62E</span><span class="s1">: </span><span class="s4">&quot;LinearResponseLimit&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC62F</span><span class="s1">: </span><span class="s4">&quot;CameraSerialNumber&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC630</span><span class="s1">: </span><span class="s4">&quot;LensInfo&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC631</span><span class="s1">: </span><span class="s4">&quot;ChromaBlurRadius&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC632</span><span class="s1">: </span><span class="s4">&quot;AntiAliasStrength&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC633</span><span class="s1">: </span><span class="s4">&quot;ShadowScale&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC634</span><span class="s1">: </span><span class="s4">&quot;DNGPrivateData&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC635</span><span class="s1">: </span><span class="s4">&quot;MakerNoteSafety&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC65A</span><span class="s1">: </span><span class="s4">&quot;CalibrationIlluminant1&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC65B</span><span class="s1">: </span><span class="s4">&quot;CalibrationIlluminant2&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC65C</span><span class="s1">: </span><span class="s4">&quot;BestQualityScale&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC65D</span><span class="s1">: </span><span class="s4">&quot;RawDataUniqueID&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC68B</span><span class="s1">: </span><span class="s4">&quot;OriginalRawFileName&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC68C</span><span class="s1">: </span><span class="s4">&quot;OriginalRawFileData&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC68D</span><span class="s1">: </span><span class="s4">&quot;ActiveArea&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC68E</span><span class="s1">: </span><span class="s4">&quot;MaskedAreas&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC68F</span><span class="s1">: </span><span class="s4">&quot;AsShotICCProfile&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC690</span><span class="s1">: </span><span class="s4">&quot;AsShotPreProfileMatrix&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC691</span><span class="s1">: </span><span class="s4">&quot;CurrentICCProfile&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC692</span><span class="s1">: </span><span class="s4">&quot;CurrentPreProfileMatrix&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6BF</span><span class="s1">: </span><span class="s4">&quot;ColorimetricReference&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6F3</span><span class="s1">: </span><span class="s4">&quot;CameraCalibrationSignature&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6F4</span><span class="s1">: </span><span class="s4">&quot;ProfileCalibrationSignature&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6F6</span><span class="s1">: </span><span class="s4">&quot;AsShotProfileName&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6F7</span><span class="s1">: </span><span class="s4">&quot;NoiseReductionApplied&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6F8</span><span class="s1">: </span><span class="s4">&quot;ProfileName&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6F9</span><span class="s1">: </span><span class="s4">&quot;ProfileHueSatMapDims&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6FA</span><span class="s1">: </span><span class="s4">&quot;ProfileHueSatMapData1&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6FB</span><span class="s1">: </span><span class="s4">&quot;ProfileHueSatMapData2&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6FC</span><span class="s1">: </span><span class="s4">&quot;ProfileToneCurve&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6FD</span><span class="s1">: </span><span class="s4">&quot;ProfileEmbedPolicy&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC6FE</span><span class="s1">: </span><span class="s4">&quot;ProfileCopyright&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC714</span><span class="s1">: </span><span class="s4">&quot;ForwardMatrix1&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC715</span><span class="s1">: </span><span class="s4">&quot;ForwardMatrix2&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC716</span><span class="s1">: </span><span class="s4">&quot;PreviewApplicationName&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC717</span><span class="s1">: </span><span class="s4">&quot;PreviewApplicationVersion&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC718</span><span class="s1">: </span><span class="s4">&quot;PreviewSettingsName&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC719</span><span class="s1">: </span><span class="s4">&quot;PreviewSettingsDigest&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC71A</span><span class="s1">: </span><span class="s4">&quot;PreviewColorSpace&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC71B</span><span class="s1">: </span><span class="s4">&quot;PreviewDateTime&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC71C</span><span class="s1">: </span><span class="s4">&quot;RawImageDigest&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC71D</span><span class="s1">: </span><span class="s4">&quot;OriginalRawFileDigest&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC71E</span><span class="s1">: </span><span class="s4">&quot;SubTileBlockSize&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC71F</span><span class="s1">: </span><span class="s4">&quot;RowInterleaveFactor&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC725</span><span class="s1">: </span><span class="s4">&quot;ProfileLookTableDims&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC726</span><span class="s1">: </span><span class="s4">&quot;ProfileLookTableData&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC740</span><span class="s1">: </span><span class="s4">&quot;OpcodeList1&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC741</span><span class="s1">: </span><span class="s4">&quot;OpcodeList2&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC74E</span><span class="s1">: </span><span class="s4">&quot;OpcodeList3&quot;</span><span class="s1">,</span>
+    <span class="s3">0xC761</span><span class="s1">: </span><span class="s4">&quot;NoiseProfile&quot;</span><span class="s1">,</span>
+<span class="s1">}</span>
+<span class="s4">&quot;&quot;&quot;Maps EXIF tags to tag names.&quot;&quot;&quot;</span>
+
+
+<span class="s1">GPSTAGS = {</span>
+    <span class="s3">0</span><span class="s1">: </span><span class="s4">&quot;GPSVersionID&quot;</span><span class="s1">,</span>
+    <span class="s3">1</span><span class="s1">: </span><span class="s4">&quot;GPSLatitudeRef&quot;</span><span class="s1">,</span>
+    <span class="s3">2</span><span class="s1">: </span><span class="s4">&quot;GPSLatitude&quot;</span><span class="s1">,</span>
+    <span class="s3">3</span><span class="s1">: </span><span class="s4">&quot;GPSLongitudeRef&quot;</span><span class="s1">,</span>
+    <span class="s3">4</span><span class="s1">: </span><span class="s4">&quot;GPSLongitude&quot;</span><span class="s1">,</span>
+    <span class="s3">5</span><span class="s1">: </span><span class="s4">&quot;GPSAltitudeRef&quot;</span><span class="s1">,</span>
+    <span class="s3">6</span><span class="s1">: </span><span class="s4">&quot;GPSAltitude&quot;</span><span class="s1">,</span>
+    <span class="s3">7</span><span class="s1">: </span><span class="s4">&quot;GPSTimeStamp&quot;</span><span class="s1">,</span>
+    <span class="s3">8</span><span class="s1">: </span><span class="s4">&quot;GPSSatellites&quot;</span><span class="s1">,</span>
+    <span class="s3">9</span><span class="s1">: </span><span class="s4">&quot;GPSStatus&quot;</span><span class="s1">,</span>
+    <span class="s3">10</span><span class="s1">: </span><span class="s4">&quot;GPSMeasureMode&quot;</span><span class="s1">,</span>
+    <span class="s3">11</span><span class="s1">: </span><span class="s4">&quot;GPSDOP&quot;</span><span class="s1">,</span>
+    <span class="s3">12</span><span class="s1">: </span><span class="s4">&quot;GPSSpeedRef&quot;</span><span class="s1">,</span>
+    <span class="s3">13</span><span class="s1">: </span><span class="s4">&quot;GPSSpeed&quot;</span><span class="s1">,</span>
+    <span class="s3">14</span><span class="s1">: </span><span class="s4">&quot;GPSTrackRef&quot;</span><span class="s1">,</span>
+    <span class="s3">15</span><span class="s1">: </span><span class="s4">&quot;GPSTrack&quot;</span><span class="s1">,</span>
+    <span class="s3">16</span><span class="s1">: </span><span class="s4">&quot;GPSImgDirectionRef&quot;</span><span class="s1">,</span>
+    <span class="s3">17</span><span class="s1">: </span><span class="s4">&quot;GPSImgDirection&quot;</span><span class="s1">,</span>
+    <span class="s3">18</span><span class="s1">: </span><span class="s4">&quot;GPSMapDatum&quot;</span><span class="s1">,</span>
+    <span class="s3">19</span><span class="s1">: </span><span class="s4">&quot;GPSDestLatitudeRef&quot;</span><span class="s1">,</span>
+    <span class="s3">20</span><span class="s1">: </span><span class="s4">&quot;GPSDestLatitude&quot;</span><span class="s1">,</span>
+    <span class="s3">21</span><span class="s1">: </span><span class="s4">&quot;GPSDestLongitudeRef&quot;</span><span class="s1">,</span>
+    <span class="s3">22</span><span class="s1">: </span><span class="s4">&quot;GPSDestLongitude&quot;</span><span class="s1">,</span>
+    <span class="s3">23</span><span class="s1">: </span><span class="s4">&quot;GPSDestBearingRef&quot;</span><span class="s1">,</span>
+    <span class="s3">24</span><span class="s1">: </span><span class="s4">&quot;GPSDestBearing&quot;</span><span class="s1">,</span>
+    <span class="s3">25</span><span class="s1">: </span><span class="s4">&quot;GPSDestDistanceRef&quot;</span><span class="s1">,</span>
+    <span class="s3">26</span><span class="s1">: </span><span class="s4">&quot;GPSDestDistance&quot;</span><span class="s1">,</span>
+    <span class="s3">27</span><span class="s1">: </span><span class="s4">&quot;GPSProcessingMethod&quot;</span><span class="s1">,</span>
+    <span class="s3">28</span><span class="s1">: </span><span class="s4">&quot;GPSAreaInformation&quot;</span><span class="s1">,</span>
+    <span class="s3">29</span><span class="s1">: </span><span class="s4">&quot;GPSDateStamp&quot;</span><span class="s1">,</span>
+    <span class="s3">30</span><span class="s1">: </span><span class="s4">&quot;GPSDifferential&quot;</span><span class="s1">,</span>
+    <span class="s3">31</span><span class="s1">: </span><span class="s4">&quot;GPSHPositioningError&quot;</span><span class="s1">,</span>
+<span class="s1">}</span>
+<span class="s4">&quot;&quot;&quot;Maps EXIF GPS tags to tag names.&quot;&quot;&quot;</span>
+</pre>
+</body>
+</html>

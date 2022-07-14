@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>__init__.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6a9955;}
+.s1 { color: #d4d4d4;}
+.s2 { color: #499cd5;}
+.s3 { color: #699856;}
+.s4 { color: #cd9069;}
+</style>
+</head>
+<body bgcolor="#1e1e1e">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+__init__.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot;Pillow (Fork of the Python Imaging Library) 
+ 
+Pillow is the friendly PIL fork by Alex Clark and Contributors. 
+    https://github.com/python-pillow/Pillow/ 
+ 
+Pillow is forked from PIL 1.1.7. 
+ 
+PIL is the Python Imaging Library by Fredrik Lundh and Contributors. 
+Copyright (c) 1999 by Secret Labs AB. 
+ 
+Use PIL.__version__ for this Pillow version. 
+ 
+;-) 
+&quot;&quot;&quot;</span>
+
+<span class="s2">from </span><span class="s1">. </span><span class="s2">import </span><span class="s1">_version</span>
+
+<span class="s3"># VERSION was removed in Pillow 6.0.0.</span>
+<span class="s3"># PILLOW_VERSION was removed in Pillow 9.0.0.</span>
+<span class="s3"># Use __version__ instead.</span>
+<span class="s1">__version__ = _version.__version__</span>
+<span class="s2">del </span><span class="s1">_version</span>
+
+
+<span class="s1">_plugins = [</span>
+    <span class="s4">&quot;BlpImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;BmpImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;BufrStubImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;CurImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;DcxImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;DdsImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;EpsImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;FitsImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;FitsStubImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;FliImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;FpxImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;FtexImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;GbrImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;GifImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;GribStubImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;Hdf5StubImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;IcnsImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;IcoImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;ImImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;ImtImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;IptcImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;JpegImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;Jpeg2KImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;McIdasImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;MicImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;MpegImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;MpoImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;MspImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PalmImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PcdImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PcxImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PdfImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PixarImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PngImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PpmImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;PsdImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;SgiImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;SpiderImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;SunImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;TgaImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;TiffImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;WebPImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;WmfImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;XbmImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;XpmImagePlugin&quot;</span><span class="s1">,</span>
+    <span class="s4">&quot;XVThumbImagePlugin&quot;</span><span class="s1">,</span>
+<span class="s1">]</span>
+
+
+<span class="s2">class </span><span class="s1">UnidentifiedImageError(OSError):</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Raised in :py:meth:`PIL.Image.open` if an image cannot be opened and identified. 
+    &quot;&quot;&quot;</span>
+
+    <span class="s2">pass</span>
+</pre>
+</body>
+</html>

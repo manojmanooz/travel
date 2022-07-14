@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<form method="POST" enctype="multipart/form-data" target="{% url 'movieapp:movies' %}">
+		{% csrf_token %}
+		<P>NAME OF THE MOVIE:</P>
+		<input type="text" name="name" placeholder="enter the movie name">
+		<P>DESCRIPTION:</P>
+		<input type="text" name="desc">
+		<P>YEAR:</P>
+		<input type="text" name="year">
+		<P>IMG:</P>
+        <input type="file" name="img">
+        <input type="submit">
+		<a href="{% url 'movieapp:movies' %}" class="btn btn">HOME</a>
+</form>
+ {% endblock %}
